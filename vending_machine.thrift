@@ -2,7 +2,6 @@ namespace cpp vending_machine
 namespace py vending_machine
 namespace lua vending_machine
 
-
 enum ErrorCode {
   SE_CONNPOOL_TIMEOUT,
   SE_THRIFT_CONN_ERROR,
@@ -15,42 +14,46 @@ enum ErrorCode {
 }
 
 exception ServiceException {
-    1: ErrorCode errorCode;
-    2: string message;
+  1: ErrorCode errorCode;
+  2: string message;
 }
 
-
-
-struct location{
-	1: i64 location_id;
-	2: i64 city;
+struct location {
+  1: i64 location_id;
+  2: i64 city;
 }
 
-enum WeatherType{
-	WARM,
-	COLD
+enum WeatherType {
+  WARM,
+  COLD
 }
 
-enum BeverageType{
-	HOT,
-	COLD
+enum BeverageType {
+  HOT,
+  COLD
 }
 
-service OrderBeverageService{
-	string PlaceOrder(
-		1: i64 city
-	)throws (1: ServiceException se)
+service OrderBeverageService {
+  string PlaceOrder(
+    1: i64 city
+  ) throws (1: ServiceException se)
 }
 
-service UpdateWeatherService{
-	void UpdateWeather(
-		1: i64 city,
-		2: WeatherType w
-	)
+service UpdateWeatherService {
+  void UpdateWeather(
+    1: i64 city,
+    2: WeatherType w
+  )
 }
 
-service WeatherService{
-	WeatherType GetWeather(
-		1: i64 city
-	)
+service WeatherService {
+  WeatherType GetWeather(
+    1: i64 city
+  )
+}
+
+service BeveragePreferenceService {
+  string getBeverage(
+    1: BeverageType btype
+  )
 }

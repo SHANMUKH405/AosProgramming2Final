@@ -1,6 +1,12 @@
 include("../cmake/Findthrift.cmake")
 include("../cmake/FindLibevent.cmake")
 
+include_directories(
+  ./gen-cpp
+  /usr/include/thrift
+)
+
+
 find_package(nlohmann_json 3.5.0 REQUIRED)
 find_package(Threads REQUIRED)
 find_package(OpenSSL REQUIRED)
@@ -14,6 +20,9 @@ if(Boost_FOUND)
 endif()
 
 set(THRIFT_GEN_CPP_DIR ../../gen-cpp)
+set(CMAKE_CXX_STANDARD 11)
 
 add_subdirectory(OrderBeverageService)
 add_subdirectory(WeatherService)
+add_subdirectory(BeveragePreferenceService)  # ✅ Add this
+
